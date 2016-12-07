@@ -1,4 +1,6 @@
 # mvmdist
+A Matlab package for probabilistic modeling of circular data with mixtures of von Mises distributions.
+
 This package provides a class-based interface, similar to MATLAB's build-in functions for handling [Gaussian mixture models](https://de.mathworks.com/help/stats/gmdistribution.html). For further information on circular probability distributions and von Mises mixture models in particular, these papers give a comprehensive overview on the general concepts:
 
 * [J. Bentley (2006), "Modelling Circular Data using a Mixture of von Mises and Uniform Distributions"](https://www.stat.sfu.ca/content/dam/sfu/stat/alumnitheses/MiscellaniousTheses/Bentley-2006.pdf)
