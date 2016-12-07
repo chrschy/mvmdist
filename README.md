@@ -47,4 +47,25 @@ samples = vmm.random(nSamples, false); % Generate samples using MATLAB implement
 
 ### Maximum likelihood parameter estimation
 
-Parameter estimation is conducted via an Expectation-Maximization (EM) approach described in [Hung et al. (2012)](http://www.tandfonline.com/doi/abs/10.1080/02664763.2012.706268).
+Parameter estimation is conducted via an Expectation-Maximization (EM) approach described in [Hung et al. (2012)](http://www.tandfonline.com/doi/abs/10.1080/02664763.2012.706268). The following example shows how a model can be fitted on a set of data samples drawn from an initial von Mises mixture distribution with three components.
+```matlab
+p = [0.3; 0.4; 0.3];         % Mixture weights.
+mu = [-pi/2; 0; pi/3];       % Component means.
+kappa = [5; 10; 2.5];        % Concentration parameters of components.
+
+vmm = VonMisesMixture(p, mu, kappa);  % Initialize model.
+samples = vmm.random(10000);          % Draw 10000 samples.
+
+% Fit new model on data samples assuming 3 mixture components.
+nComponents = 3;
+fittedVmm = fitmvmdist(samples, nComponents);
+
+% Plot initial and fitted distributions.
+angles = linspace(-pi, pi, 1000)';
+likelihoodsInitial = vmm.pdf(angles);
+likelihoodsFitted = fittedVmm.pdf(angles);
+
+plot(angles, likelihoodsInitial); hold on;
+plot(angles, likelihoodsFitted); grid on;
+axis([-pi, pi, 0, 1]);
+```
