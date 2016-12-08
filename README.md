@@ -9,7 +9,7 @@ This package provides a class-based interface, similar to MATLAB's build-in func
 ## Installation
 
 1. Clone or download this repository and add it to your MATLAB search path.
-2. Compile the *.mex-file located at `@VonMisesMixture/private` by browsing to that directory in MATLAB and running ```mex sampleVonMises.c``` from the command line.
+2. Compile the *.mex-file located at `@VonMisesMixture/private` by browsing to that directory in MATLAB and running ```mex sampleVonMisesMex.c``` from the command line.
 
 ## Examples
 
