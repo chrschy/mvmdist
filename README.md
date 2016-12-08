@@ -28,7 +28,7 @@ vmm = VonMisesMixture(p, mu, kappa);
 
 Given a vector of angular values, the probability density function of a von Mises mixture model can be computed with the ```pdf()``` method provided by the ```VonMisesMixture``` class. The following code example plots the probability density function of a ```VonMisesMixture``` class instance.
 ```matlab
-angles = linspace(-pi, pi, 1000)';  % The pdf() function expects a column-vector as input.
+angles = linspace(-pi, pi, 1000)'; % The pdf() function expects a column-vector as input.
 likelihoods = vmm.pdf(angles);
 plot(angles, likelihoods); grid on;
 ```
@@ -38,7 +38,7 @@ plot(angles, likelihoods); grid on;
 This implementation uses the method introduced by [Barabesi (2005)](http://sa-ijas.stat.unipd.it/sites/sa-ijas.stat.unipd.it/files/417-426.pdf) to generate samples from a von Mises distribution. To speed up the sampling process, a mex-function is used by default which is significantly faster than the plain MATLAB implementation (especially for a large number of samples).
 ```matlab
 nSamples = 10000;
-samples = vmm.random(nSamples);     % Generate samples using *.mex-function.
+samples = vmm.random(nSamples); % Generate samples using *.mex-function.
 ```
 If the plain MATLAB sampling method should be used, a second argument has to be passed to the ```random()``` function which sets the internal ```useMex``` flag to ```false```:
 ```matlab
@@ -58,7 +58,8 @@ samples = vmm.random(10000);          % Draw 10000 samples.
 
 % Fit new model on data samples assuming 3 mixture components.
 nComponents = 3;
-fittedVmm = fitmvmdist(samples, nComponents);
+fittedVmm = fitmvmdist(samples, nComponents, ...
+  'MaxIter', 250); % Set maximum number of EM iterations to 250
 
 % Plot initial and fitted distributions.
 angles = linspace(-pi, pi, 1000)';
