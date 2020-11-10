@@ -70,6 +70,9 @@ for idx = 1 : nMixtures
     exp(p.Results.Kappa(idx) .* cos(p.Results.Angles - p.Results.Mu(idx)));
 end
 
+% Fix to accommodate for too large Kappa values
+compLik(~isfinite(compLik)) = 0;
+
 % Accumulate component likelihoods to get the total likelihood.
 likelihood = compLik * p.Results.CProp(:);
 
