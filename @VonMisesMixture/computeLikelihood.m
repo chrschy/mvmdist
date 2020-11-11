@@ -70,8 +70,9 @@ for idx = 1 : nMixtures
     exp(p.Results.Kappa(idx) .* cos(p.Results.Angles - p.Results.Mu(idx)));
 end
 
-% Fix to accommodate for too large Kappa values
-compLik(~isfinite(compLik)) = 0;
+% Fix to accommodate for too large Kappa values, causing inf/inf to go to
+% NaN
+compLik(~isfinite(compLik)) = 10.560077263485184; % empirically determined limit of (double) exp(K)./(2.*pi.*besseli(0,K));
 
 % Accumulate component likelihoods to get the total likelihood.
 likelihood = compLik * p.Results.CProp(:);
